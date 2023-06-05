@@ -1,0 +1,118 @@
+---
+import { Icon } from "astro-icon";
+import ContentSection from "~/components/content-section.astro";
+import type { ServiciosItem } from "~/types";
+
+const servicios: Array<ServiciosItem> = [
+ 
+  {
+    title: "Diseño y Desarrollo Web",
+    description:
+      "Diseño y desarrollo de sitios web, landing pages, tiendas online, blogs, etc.",
+    icon: "mdi:web",
+  },
+  {
+    title: "Diseño Gráfico",
+    description:
+      "Diseño de logotipos, tarjetas de presentación, flyers, banners, etc.",
+    icon: "mdi:palette",
+  },
+  {
+    title: "Marketing Digital",
+    description:
+      "Posicionamiento SEO, campañas de Google Ads, Facebook Ads, etc.",
+    icon: "mdi:bullhorn",
+  },
+  {
+    title: "Fotografía y Video",
+    description:
+      "Fotografía y video profesional para tu negocio, producto o servicio.",
+    icon: "mdi:camera",
+  },
+  {
+    title: "Redes Sociales",
+    description:
+      "Manejo de redes sociales, creación de contenido, estrategias de marketing, etc.",
+    icon: "mdi:instagram",
+  },
+  {
+    title: "Consultoría",
+    description:
+      "Asesoría y consultoría en tecnología, marketing digital, diseño, etc.",
+    icon: "mdi:lightbulb-on",
+  },
+];
+---
+
+<ContentSection title="Servicios" id="servicios">
+  <Fragment slot="lead">
+    <p class="text-center text-offset text-xl">
+      Ofrecemos una amplia gama de servicios para ayudarte a impulsar tu negocio
+      o proyecto.
+    </p>
+  </Fragment>
+  <ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    {
+      servicios.map(({ title, description, icon }) => (
+        <li class="flex flex-col items-center gap-4 border border-default bg-offset p-6">
+          <div class="h-16 w-16 rounded-full text-white border-2 border-current p-3">
+            <Icon name={icon} />
+          </div>
+          <p class="text-center font-extrabold text-xl">{title}</p>
+          <p class="text-center text-offset text-sm">{description}</p>
+        </li>
+      ))
+    }
+  </ul>
+  <style>
+  /* darle estilo a los li juntos con su Icon */
+  li > div {
+    background-color: var(--color-primary);
+    color: var(--color-primary-contrast);
+  }
+
+  li > div > svg {
+    height: 100%;
+    width: 100%;
+  }
+
+ /* estilo para li y p tipo marmol con hover*/
+  li:hover {
+    background-color: var(--color-primary);
+    color: var(--color-primary-contrast);
+  }
+
+  li:hover > p {
+    color: white;
+  }
+
+  li > p {
+    color: var(--color-primary);
+  }
+
+
+
+  li {
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  li > div {
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  li > div > svg {
+    transition: fill 0.2s ease-in-out;
+    color: white;
+  }
+
+ 
+
+
+  
+  
+    
+
+
+
+  </style>
+</ContentSection>

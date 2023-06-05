@@ -1,0 +1,92 @@
+---
+import { Picture } from "@astrojs/image/components";
+import mimetronwelcomeImage from "~/assets/mimetron-hello.png";
+import mimetizaIcon from "~/assets/icono.png";
+import HeroImage from "~/components/hero-image.astro";
+import Starfield from "~/components/starfield.astro";
+
+const widths = [350, 700];
+const sizes = "(min-width: 640px) 42vw, 67vw";
+---
+
+<section class="relative h-full bg-black">
+  <Starfield />
+  <div id="splash-bg-fallback" class="absolute inset-0 hidden opacity-40">
+    <HeroImage />
+  </div>
+  <div class="relative grid h-full place-items-center sm:grid-cols-2">
+    <h2
+      class="flex flex-col gap-2 self-end sm:gap-4 sm:self-auto sm:justify-self-end"
+    >
+      <astro-slot>
+        <astro-inline>
+          <Picture
+            class="mx-auto h-24 w-24 sm:h-32 sm:w-32"
+            src={mimetizaIcon}
+            widths={[300, 300]}
+            alt="mimetiza icon"
+            loading="eager"
+          />
+        </astro-inline>
+      </astro-slot>
+
+      <div
+        class="text-white text-center font-semibold tracking-tighter text-8xl"
+      >
+        Mimetiza
+        <p class="text-xl gradient-text  text-center font-semibold tracking-tighter">Construyendo experiencias digitales únicas para el futuro de tu negocio</p>
+      </div>
+    </h2>
+    <div
+      id="mimetron"
+      class="w-2/3 max-w-3xl self-start sm:w-10/12 sm:self-auto sm:justify-self-start"
+    >
+      <Picture
+        class="h-full w-full object-cover"
+        src={mimetronwelcomeImage}
+        widths={widths}
+        sizes={sizes}
+        loading="eager"
+        alt="mimetron its the pet of mimetiza company"
+      />
+    </div>
+  </div>
+</section>
+
+<noscript>
+  <style>
+    #splash-bg-fallback {
+      display: block;
+    }
+  </style>
+</noscript>
+
+<style>
+  @keyframes float {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      transform: translate3d(0, 30px, 0);
+    }
+  }
+
+  #mimetron {
+    animation: float linear 2.5s infinite alternate;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #mimetron {
+      @apply animate-none;
+    }
+
+    :global(#starfield) {
+      @apply hidden;
+    }
+
+    #splash-bg-fallback {
+      @apply block;
+    }
+  }
+</style>
